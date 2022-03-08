@@ -1,0 +1,8 @@
+warehouse:
+  products: products.json
+  inventory: inventory.json
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    com.warehouse.application.*: TRACE
