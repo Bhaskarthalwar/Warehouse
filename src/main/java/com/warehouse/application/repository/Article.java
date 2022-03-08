@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class Article implements Serializable {
-    private static final long serialVersionUID = -1768105479248068676L;
 
     @JsonProperty("art_id")
     private int artId;

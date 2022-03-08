@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class Product implements Serializable {
-    private static final long serialVersionUID = 4570964199436245098L;
 
     @JsonProperty("contain_articles")
     private List<ProductArticle> productArticles;
