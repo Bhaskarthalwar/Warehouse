@@ -49,8 +49,8 @@ public class ProductController {
     @GetMapping(value = "/warehouse/product/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity getProduct(@PathVariable String name) {
-        Optional<Product> product = prodManager.getAProduct(name);
-        return new ResponseEntity<>(product.get(), HttpStatus.OK);
+        Product product = prodManager.getAnProduct(name);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     /**

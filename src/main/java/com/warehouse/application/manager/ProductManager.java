@@ -71,8 +71,13 @@ public class ProductManager extends WarehouseManager {
      * @param name
      * @return Product
      */
-    public Optional<Product> getAProduct(String name) {
-        return getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst();
+    public Product getAnProduct(String name) {
+        Optional<Product> product = getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst();
+        if (product.isPresent()) {
+            return product.get();
+        } else {
+            throw new ProductNotFoundException("The product does not exist in the inventory");
+        }
     }
 
     /**

@@ -65,17 +65,22 @@ public class InventoryManager extends WarehouseManager {
      * @param artiId
      */
     public void reduceArticleQty(Product product, int artiId) {
-        ProductArticle productArticle = product.getProductArticles().stream().filter(x -> x.getArtId() == artiId).findFirst().get();
-        Optional<Article> articleToBeUpdated = getArticles().stream().filter(x -> x.getArtId() == artiId).findFirst();
-        if (articleToBeUpdated.isPresent()) {
-            int quantityToBeUpdated = articleToBeUpdated.get().getStock() - productArticle.getAmountOf();
-            if (Integer.compare(quantityToBeUpdated, 0) != -1)
-                getArticles().stream().filter(x -> x.getArtId() == artiId).findFirst().get().setStock(quantityToBeUpdated);
-            if (Integer.compare(quantityToBeUpdated, 0) == 0)
-                removeAnArticle(artiId);
+        Optional<ProductArticle> productArticle = product.getProductArticles().stream().filter(x -> x.getArtId() == artiId).findFirst();
+        if (productArticle.isPresent()) {
+            Optional<Article> articleToBeUpdated = getArticles().stream().filter(x -> x.getArtId() == artiId).findFirst();
+            if (articleToBeUpdated.isPresent()) {
+                int quantityToBeUpdated = articleToBeUpdated.get().getStock() - productArticle.get().getAmountOf();
+                if (Integer.compare(quantityToBeUpdated, 0) != -1)
+                    getArticles().stream().filter(x -> x.getArtId() == artiId).findFirst().get().setStock(quantityToBeUpdated);
+                if (Integer.compare(quantityToBeUpdated, 0) == 0)
+                    removeAnArticle(artiId);
+            } else {
+                throw new ArticleNotFoundException("The article that needs to be updated is not found in the inventory");
+            }
         } else {
-            throw new ArticleNotFoundException("The article that needs to be updated is not found in the repo");
+            throw new ArticleNotFoundException("The product article does not exist for the given product in the catalog");
         }
+
     }
 
     /**
