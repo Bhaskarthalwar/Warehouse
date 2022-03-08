@@ -3,7 +3,7 @@ package com.warehouse.application.controllers;
 import java.util.Optional;
 
 import com.warehouse.application.manager.ProductManager;
-import com.warehouse.application.model.Product;
+import com.warehouse.application.repository.Product;
 import com.warehouse.application.expections.ProductNotFoundException;
 
 import org.slf4j.Logger;
@@ -26,7 +26,8 @@ public class ProductController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @GetMapping(value = "/warehouse/products/", produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @GetMapping(value = "/warehouse/product/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity listProducts() {
         return new ResponseEntity<>(prodManager.getAllProducts(), HttpStatus.OK);
@@ -35,19 +36,14 @@ public class ProductController {
     @GetMapping(value = "/warehouse/product/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity getProduct(@PathVariable String name) {
-        log.info("Getting product with name {}", name);
         Optional<Product> product = prodManager.getAProduct(name);
-        if (!product.isPresent()) {
-            throw new ProductNotFoundException("Product with name '" + name + "' not found");
-        }
         return new ResponseEntity<>(product.get(), HttpStatus.OK);
     }
 
     @PutMapping(value = "/warehouse/product/{name}/{qty}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Void> sellProduct(@PathVariable String name, @PathVariable int qty) {
-        log.info("Sell product with name {} and qty {}", name, qty);
-        prodManager.sellProduct(name,qty);
+        prodManager.sellProduct(name, qty);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

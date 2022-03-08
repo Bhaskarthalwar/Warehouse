@@ -1,15 +1,13 @@
-package com.warehouse.application.model;
+package com.warehouse.application.repository;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Repository;
 
-
-/**
- * A Part (article) of the product
- */
+@Repository
 public class Product implements Serializable {
     private static final long serialVersionUID = 4570964199436245098L;
 

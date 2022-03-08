@@ -1,10 +1,12 @@
-package com.warehouse.application.model;
+package com.warehouse.application.repository;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Repository
 public class ProductArticle implements Serializable {
 
     @JsonProperty("art_id")

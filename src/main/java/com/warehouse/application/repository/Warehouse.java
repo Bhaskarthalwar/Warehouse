@@ -1,11 +1,13 @@
-package com.warehouse.application.model;
+package com.warehouse.application.repository;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.stereotype.Repository;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Repository
 public class Warehouse {
 
     @JsonProperty("products")

@@ -1,31 +1,29 @@
 package com.warehouse.application.manager;
 
-import com.warehouse.application.model.Article;
-import com.warehouse.application.model.Product;
-import org.springframework.stereotype.Component;
+import com.warehouse.application.repository.Article;
+import com.warehouse.application.repository.Product;
 
 import java.util.List;
 
-@Component
-public class WarehouseManager {
+public abstract class WarehouseManager {
 
     private List<Product> products;
 
     private List<Article> articles;
 
-    protected List<Article> getArticles() {
+    List<Article> getArticles() {
         return articles;
     }
 
-    protected void setArticles(List<Article> articles) {
+    void setArticles(List<Article> articles) {
         this.articles = articles;
     }
 
-    protected List<Product> getProducts() {
+    List<Product> getProducts() {
         return products;
     }
 
-    protected void setProducts(List<Product> products) {
+    void setProducts(List<Product> products) {
         this.products = products;
     }
 }

@@ -2,7 +2,7 @@ package com.warehouse.application.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.warehouse.application.model.Warehouse;
+import com.warehouse.application.repository.Warehouse;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 public final class CommonUtil {
+
     public static final Warehouse loadFile(String filename) throws IOException {
 
         File file = null;

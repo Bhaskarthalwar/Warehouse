@@ -1,17 +1,17 @@
 package com.warehouse.application.controllers;
 
-import java.util.List;
-
 import com.warehouse.application.manager.InventoryManager;
-import com.warehouse.application.model.Article;
-
+import com.warehouse.application.repository.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class InventoryController {
@@ -21,9 +21,15 @@ public class InventoryController {
 
     @GetMapping(value = "/warehouse/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity listProducts() {
+    public ResponseEntity listInventory() {
         List<Article> allArticles = inventoryManager.getAllArticles();
         return new ResponseEntity<>(allArticles, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/warehouse/inventory/{artId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity listAnArticle(@PathVariable int artId) {
+        Article article = inventoryManager.getAnArticle(artId);
+        return new ResponseEntity<>(article, HttpStatus.OK);
+    }
 }
