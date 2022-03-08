@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ *  Inventory Setup Endpoints
+ */
 @RestController
 public class InventoryController {
 
     @Autowired
     InventoryManager inventoryManager;
 
+    /**
+     * @return Inventory data
+     */
     @GetMapping(value = "/warehouse/inventory", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity listInventory() {
@@ -26,6 +32,11 @@ public class InventoryController {
         return new ResponseEntity<>(allArticles, HttpStatus.OK);
     }
 
+    /**
+     *
+     * @param artId
+     * @return An Article
+     */
     @GetMapping(value = "/warehouse/inventory/{artId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity listAnArticle(@PathVariable int artId) {

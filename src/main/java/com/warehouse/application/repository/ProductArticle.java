@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * This is a relational document between the article and the product and is equivalent to
+ * contains_article in the products.json
+ */
 @Repository
 public class ProductArticle implements Serializable {
 

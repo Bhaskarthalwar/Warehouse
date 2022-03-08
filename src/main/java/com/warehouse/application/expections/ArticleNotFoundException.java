@@ -1,5 +1,9 @@
 package com.warehouse.application.expections;
 
+/**
+ * Exception thrown when an article is not present in the inventory
+ * for whom we are looking for
+ */
 public class ArticleNotFoundException extends RuntimeException {
 
     public ArticleNotFoundException(String message) {

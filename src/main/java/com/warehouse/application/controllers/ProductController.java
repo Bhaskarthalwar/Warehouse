@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * API endpoints for Product setup
+ */
 @RestController
 public class ProductController {
 
@@ -26,13 +29,23 @@ public class ProductController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-
+    /**
+     * Gives the list of available products in store
+     *
+     * @return List<Product></Product>
+     */
     @GetMapping(value = "/warehouse/product/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity listProducts() {
         return new ResponseEntity<>(prodManager.getAllProducts(), HttpStatus.OK);
     }
 
+    /**
+     * Gives the product available in store with name
+     *
+     * @param name
+     * @return Product
+     */
     @GetMapping(value = "/warehouse/product/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity getProduct(@PathVariable String name) {
@@ -40,10 +53,18 @@ public class ProductController {
         return new ResponseEntity<>(product.get(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/warehouse/product/{name}/{qty}", produces = MediaType.APPLICATION_JSON_VALUE)
+    /**
+     * This method sells a product with name and artId and removes the
+     * sold product from inventory as well as product catalog
+     *
+     * @param name
+     * @param artId
+     * @return Updated Product and Inventory or Warehouse as a whole
+     */
+    @PutMapping(value = "/warehouse/product/{name}/{artId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Void> sellProduct(@PathVariable String name, @PathVariable int qty) {
-        prodManager.sellProduct(name, qty);
+    public ResponseEntity<Void> sellProduct(@PathVariable String name, @PathVariable int artId) {
+        prodManager.sellProduct(name, artId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

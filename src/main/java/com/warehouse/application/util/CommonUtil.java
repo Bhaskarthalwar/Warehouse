@@ -9,8 +9,17 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * This is common utility class across the system which is used for
+ * Parsing and loading the external files
+ */
 public final class CommonUtil {
 
+    /**
+     * @param filename
+     * @return
+     * @throws IOException
+     */
     public static final Warehouse loadFile(String filename) throws IOException {
 
         File file = null;
@@ -22,6 +31,13 @@ public final class CommonUtil {
         return fromJsonToObject(json, Warehouse.class);
     }
 
+    /**
+     * @param json
+     * @param beanClass
+     * @param <T>
+     * @return
+     * @throws JsonProcessingException
+     */
     private static final <T> T fromJsonToObject(String json, Class<T> beanClass) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();

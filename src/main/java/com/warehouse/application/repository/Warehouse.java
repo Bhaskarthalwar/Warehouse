@@ -1,12 +1,15 @@
 package com.warehouse.application.repository;
 
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Repository;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+import java.util.List;
+
+/**
+ * This is a document which represents both the product and inventory and is the source of truth
+ * embedding the overall state of the warehouse
+ */
+
 @Repository
 public class Warehouse {
 

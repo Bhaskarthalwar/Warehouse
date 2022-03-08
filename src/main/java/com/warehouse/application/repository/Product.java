@@ -7,6 +7,9 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Document to store the Product to the repo
+ */
 @Repository
 public class Product implements Serializable {
     private static final long serialVersionUID = 4570964199436245098L;

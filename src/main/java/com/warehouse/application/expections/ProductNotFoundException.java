@@ -1,5 +1,9 @@
 package com.warehouse.application.expections;
 
+/**
+ * Exception thrown when we are searching for a product and
+ * is not found in the product catalog
+ */
 public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException() {
         super();

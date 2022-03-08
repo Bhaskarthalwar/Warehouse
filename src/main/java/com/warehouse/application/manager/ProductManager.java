@@ -15,6 +15,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * it handles the lifecycle events for product catalog like
+ * 1. accessing all the products in the catalog
+ * 2. loading all the products to the catalog
+ * 3. selling (removing) the product from both product catalog as well as inventory
+ */
 @Component
 public class ProductManager extends WarehouseManager {
 
@@ -28,6 +34,10 @@ public class ProductManager extends WarehouseManager {
     @Value("${warehouse.products}")
     private String productsFile;
 
+    /**
+     * Load the products file to the catalog done as part of
+     * spring bean initialization
+     */
     @PostConstruct
     public void loadProducts() {
         try {
@@ -38,6 +48,13 @@ public class ProductManager extends WarehouseManager {
         }
     }
 
+    /**
+     * Sell the given product with the article id and
+     * update the state of the warehouse store as well I.E Product catalog and inventory
+     *
+     * @param name
+     * @param artId
+     */
     public void sellProduct(String name, int artId) {
         Optional<Product> productToBeRemoved = getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst();
         if (productToBeRemoved.isPresent()) {
@@ -48,10 +65,21 @@ public class ProductManager extends WarehouseManager {
         }
     }
 
+    /**
+     * Retrieve a particular product from the catalog.
+     *
+     * @param name
+     * @return Product
+     */
     public Optional<Product> getAProduct(String name) {
         return getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst();
     }
 
+    /**
+     * State store of all products got from warehouse manager.
+     *
+     * @return List<Product>
+     */
     public List<Product> getAllProducts() {
         return getProducts();
     }
