@@ -23,6 +23,20 @@ Procedure to run the code in local :
     
       mvn clean install 
 
-**3) Run the sprng boot application locally on 8080 port **
+**3) Run the sprng boot application locally on 8080 port**
      
      mvn spring-boot:run
+     The application will run on port 8080 by default 
+     
+**4) Test the below URL'S through postman or CURL**
+    
+      GET : http://localhost:8080/warehouse/inventory/ 
+      GET : http://localhost:8080/warehouse/product/
+      GET : http://localhost:8080/warehouse/inventory/{artId}
+      GET : http://localhost:8080/warehouse/product/{name}
+      PUT : http://localhost:8080/warehouse/product/{name}/qty 
+      
+             **The above API is used for selling the products so one the above API is executed , one can test the changes in memory via 
+             triggering the first two API's and see the updated inventory details.**
+      
+       
