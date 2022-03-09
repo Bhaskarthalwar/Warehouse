@@ -34,7 +34,7 @@ public class ProductController {
      *
      * @return List<Product></Product>
      */
-    @GetMapping(value = "/warehouse/product/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/warehouse/product", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity listProducts() {
         return new ResponseEntity<>(prodManager.getAllProducts(), HttpStatus.OK);
