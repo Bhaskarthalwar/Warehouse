@@ -40,7 +40,10 @@ Procedure to run the code in local :
              **The above API is used for selling the products so one the above API is executed , one can test the changes in memory via 
              triggering the first two API's and see the updated inventory details.**
       
- 
+ **5) This application supports the actuator end points as well**
+    
+     GET : http://localhost:8080/actuator/health
+     
  _LIMITATIONS_ :
  
   1) The selling happens inmemory and one can see the updated values till the spring context exists and once the context gets destroyed. 
