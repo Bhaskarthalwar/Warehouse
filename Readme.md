@@ -30,7 +30,7 @@ Procedure to run the code in local :
      
 **4) Test the below URL'S through postman or CURL**
     
-      GET : http://localhost:8080/warehouse/inventor 
+      GET : http://localhost:8080/warehouse/inventory 
       GET : http://localhost:8080/warehouse/product
       GET : http://localhost:8080/warehouse/inventory/{artId}
       GET : http://localhost:8080/warehouse/product/{name}
