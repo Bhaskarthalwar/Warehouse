@@ -56,10 +56,10 @@ public class ProductManager extends WarehouseManager {
      * @param artId
      */
     public void sellProduct(String name, int artId) {
-        Optional<Product> productToBeRemoved = getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst();
+        Optional<Product> productToBeRemoved = getProducts().stream().filter(product -> product.getName().equalsIgnoreCase(name)).findFirst();
         if (productToBeRemoved.isPresent()) {
             inventoryManager.reduceArticleQty(productToBeRemoved.get(), artId);
-            getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst().get().getProductArticles().removeIf(x -> x.getArtId() == artId);
+            getProducts().stream().filter(product -> product.getName().equalsIgnoreCase(name)).findFirst().get().getProductArticles().removeIf(prodArticle -> prodArticle.getArtId() == artId);
         } else {
             throw new ProductNotFoundException("The product to be sold does not exist in the inventory");
         }
@@ -72,7 +72,7 @@ public class ProductManager extends WarehouseManager {
      * @return Product
      */
     public Product getAnProduct(String name) {
-        Optional<Product> product = getProducts().stream().filter(x -> x.getName().equalsIgnoreCase(name)).findFirst();
+        Optional<Product> product = getProducts().stream().filter(prod -> prod.getName().equalsIgnoreCase(name)).findFirst();
         if (product.isPresent()) {
             return product.get();
         } else {

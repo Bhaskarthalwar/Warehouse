@@ -65,13 +65,13 @@ public class InventoryManager extends WarehouseManager {
      * @param artiId
      */
     public void reduceArticleQty(Product product, int artiId) {
-        Optional<ProductArticle> productArticle = product.getProductArticles().stream().filter(x -> x.getArtId() == artiId).findFirst();
+        Optional<ProductArticle> productArticle = product.getProductArticles().stream().filter(prodArticle -> prodArticle.getArtId() == artiId).findFirst();
         if (productArticle.isPresent()) {
-            Optional<Article> articleToBeUpdated = getArticles().stream().filter(x -> x.getArtId() == artiId).findFirst();
+            Optional<Article> articleToBeUpdated = getArticles().stream().filter(article -> article.getArtId() == artiId).findFirst();
             if (articleToBeUpdated.isPresent()) {
                 int quantityToBeUpdated = articleToBeUpdated.get().getStock() - productArticle.get().getAmountOf();
                 if (Integer.compare(quantityToBeUpdated, 0) != -1)
-                    getArticles().stream().filter(x -> x.getArtId() == artiId).findFirst().get().setStock(quantityToBeUpdated);
+                    getArticles().stream().filter(article -> article.getArtId() == artiId).findFirst().get().setStock(quantityToBeUpdated);
                 if (Integer.compare(quantityToBeUpdated, 0) == 0)
                     removeAnArticle(artiId);
             } else {
@@ -90,7 +90,7 @@ public class InventoryManager extends WarehouseManager {
      * @return Article
      */
     public Article getAnArticle(int articleId) {
-        Optional<Article> article = getArticles().stream().filter(x -> x.getArtId() == articleId).findFirst();
+        Optional<Article> article = getArticles().stream().filter(art -> art.getArtId() == articleId).findFirst();
         if (article.isPresent()) {
             return article.get();
         } else {
@@ -104,7 +104,7 @@ public class InventoryManager extends WarehouseManager {
      * @param artId
      */
     private void removeAnArticle(int artId) {
-        getArticles().removeIf(x -> x.getArtId() == artId);
+        getArticles().removeIf(article -> article.getArtId() == artId);
     }
 
 
