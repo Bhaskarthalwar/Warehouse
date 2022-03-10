@@ -30,11 +30,11 @@ Procedure to run the code in local :
      
 **4) Test the below URL'S through postman or CURL**
     
-      GET : http://localhost:8080/warehouse/inventory 
-      GET : http://localhost:8080/warehouse/product
-      GET : http://localhost:8080/warehouse/inventory/{artId}
-      GET : http://localhost:8080/warehouse/product/{name}
-      PUT : http://localhost:8080/warehouse/product/{name}/{artId}
+      GET     : http://localhost:8080/warehouse/inventory 
+      GET     : http://localhost:8080/warehouse/product
+      GET     : http://localhost:8080/warehouse/inventory/{artId}
+      GET     : http://localhost:8080/warehouse/product/{name}
+      PATCH   : http://localhost:8080/warehouse/product/{name}/{artId}
       
       
              **The above API is used for selling the products so one the above API is executed , one can test the changes in memory via 
